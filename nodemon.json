@@ -1,7 +1,7 @@
 {
     "env": {
-        "DB_USER": "james",
-        "DB_PASSWORD": "TqQe6ZiYdT6cRjGj",
+        "DB_USER": "james_new",
+        "DB_PASSWORD": "egk8n1FPnu0rt36R",
         "DB_NAME": "savr"
     }
 }
