@@ -6,6 +6,8 @@ const itemRoutes = require('./routes/item-routes');
 const usersRoutes = require('./routes/users-routes');
 const HttpError = require('./models/http-error');
 
+require("dotenv").config();
+
 const app = express();
 
 app.use(bodyParser.json());
@@ -34,7 +36,6 @@ app.use((error, req, res, next) => {
 });
 
 mongoose
-//   .connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@savr.xikai7q.mongodb.net/${process.env.DB_USER}?retryWrites=true&w=majority`)
   .connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@savr.xikai7q.mongodb.net/?retryWrites=true&w=majority`)
   .then(() => {
     app.listen(process.env.PORT || 5000);
