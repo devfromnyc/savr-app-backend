@@ -185,11 +185,17 @@ const deleteItem = async (req, res, next) => {
 
   try {
     const sess = await mongoose.startSession();
+    console.log("Session Started");
     sess.startTransaction();
+    console.log("Transaction Started");
     await item.remove({ session: sess });
+    console.log("Item remove session response has been detected");
     item.creator.items.pull(item);
+    console.log("creator item pulled");
     await item.creator.save({ session: sess });
+    console.log("deleted item");
     await sess.commitTransaction();
+    console.log("session committed");
   } catch (err) {
     const error = new HttpError(
       'Something went wrong, could not delete item. Mongoose start session failed',
