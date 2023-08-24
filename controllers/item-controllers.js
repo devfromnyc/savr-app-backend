@@ -25,7 +25,7 @@ const getItemById = async (req, res, next) => {
 
   let item;
   try {
-    item = await Item.findById(catId);
+    item = await Item.findById(itemId);
   } catch (err) {
     const error = new HttpError(
       'Something went wrong, could not find an Item.',
@@ -172,7 +172,7 @@ const deleteItem = async (req, res, next) => {
     item = await Item.findById(itemId).populate('creator');
   } catch (err) {
     const error = new HttpError(
-      'Something went wrong, could not delete item.',
+      'Something went wrong, could not delete item. Populate Failed',
       500
     );
     return next(error);
@@ -192,7 +192,7 @@ const deleteItem = async (req, res, next) => {
     await sess.commitTransaction();
   } catch (err) {
     const error = new HttpError(
-      'Something went wrong, could not delete item.',
+      'Something went wrong, could not delete item. Mongoose start session failed',
       500
     );
     return next(error);
